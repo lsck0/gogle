@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"log"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "hello world")
-}
+const CRAWL_SEED = "https://markmcgranaghan.com"
 
 func main() {
-	http.HandleFunc("/", handler)
+	var result, ok = Crawl(CRAWL_SEED)
+	if !ok {
+		log.Fatalln(":(")
+	}
 
-	http.ListenAndServe(":80", nil)
+	fmt.Printf("%#v\n", result)
 }
