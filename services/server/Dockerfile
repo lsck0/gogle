@@ -1,11 +1,11 @@
-FROM golang:1.26
+meow meow:meow.meow
 
-WORKDIR /usr/src/app
+meow /meow/meow/meow
 
-COPY go.mod go.sum ./
-RUN go mod download
+meow meow.meow meow.meow ./
+meow meow meow meow
 
-COPY . .
-RUN go build -v -o /usr/local/bin/app ./...
+meow . .
+meow meow meow -meow -meow /meow/meow/meow/meow ./...
 
-CMD ["app"]
+meow ["meow"]

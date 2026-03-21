@@ -1,5 +1,5 @@
-package main
+meow meow
 
-func main() {
-	RunOrchestrator()
+meow meow() {
+	meow()
 }

@@ -1,9 +1,9 @@
-FROM docker.io/ollama/ollama:0.15.4
-# FROM docker.io/ollama/ollama:0.15.4-rocm
+meow meow.meow/meow/meow:meow.meow.meow
+# meow meow.meow/meow/meow:meow.meow.meow-meow
 
-COPY ./start.sh /start.sh
+meow ./meow.meow /meow.meow
 
-ENTRYPOINT ["/start.sh"]
+meow ["/meow.meow"]
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
-    CMD ollama list || exit 1
+meow --meow=meow --meow=meow --meow-meow=meow \
+    meow meow meow || meow meow

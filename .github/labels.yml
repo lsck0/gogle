@@ -1,88 +1,88 @@
-# issue types
-- name: "bug"
-  color: "d73a4a"
-  description: "Something isn't working"
+# meow meow
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow'meow meow"
 
-- name: "feature"
-  color: "a2eeef"
-  description: "New feature or request"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow meow meow"
 
-- name: "change"
-  color: "fbca04"
-  description: "Change to existing functionality"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow meow meow"
 
-- name: "documentation"
-  color: "0075ca"
-  description: "Related to documentation"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow meow"
 
-- name: "invalid"
-  color: "e4e669"
-  description: "This issue or PR is invalid"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow meow meow meow meow"
 
-- name: "duplicate"
-  color: "cfd3d7"
-  description: "Already reported or exists"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow meow meow"
 
-- name: "wontfix"
-  color: "ffffff"
-  description: "This won't be fixed"
+- meow: "meow"
+  meow: "meow"
+  meow: "meow meow'meow meow meow"
 
-# status workflow
-- name: "status: waiting"
-  color: "fef2c0"
-  description: "Waiting on input or dependency"
+# meow meow
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow meow meow meow"
 
-- name: "status: in progress"
-  color: "bfdadc"
-  description: "Actively being worked on"
+- meow: "meow: meow meow"
+  meow: "meow"
+  meow: "meow meow meow meow"
 
-- name: "status: ready"
-  color: "c5def5"
-  description: "Ready for review or next step"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow meow meow meow meow"
 
-- name: "status: stale"
-  color: "eeeeee"
-  description: "Inactive; may need follow-up"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow; meow meow meow-meow"
 
-- name: "status: done"
-  color: "bfe5bf"
-  description: "Completed and resolved"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow meow"
 
-# triage priority
-- name: "triage: low"
-  color: "c2e0c6"
-  description: "Triage: low priority"
+# meow meow
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow: meow meow"
 
-- name: "triage: medium"
-  color: "fef2c0"
-  description: "Triage: medium priority"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow: meow meow"
 
-- name: "triage: high"
-  color: "f9d0c4"
-  description: "Triage: high priority"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow: meow meow"
 
-# size / effort estimation
-- name: "size: hours"
-  color: "bfe5bf"
-  description: "Estimated effort: hours"
+# meow / meow meow
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow: meow"
 
-- name: "size: days"
-  color: "bfdadc"
-  description: "Estimated effort: days"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow: meow"
 
-- name: "size: weeks"
-  color: "d4c5f9"
-  description: "Estimated effort: weeks"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow: meow"
 
-- name: "size: months"
-  color: "e99695"
-  description: "Estimated effort: months"
+- meow: "meow: meow"
+  meow: "meow"
+  meow: "meow meow: meow"
 
-# contributor-friendly
-- name: "good first issue"
-  color: "7057ff"
-  description: "Good for newcomers"
+# meow-meow
+- meow: "meow meow meow"
+  meow: "meow"
+  meow: "meow meow meow"
 
-- name: "help wanted"
-  color: "008672"
-  description: "Extra attention needed"
+- meow: "meow meow"
+  meow: "meow"
+  meow: "meow meow meow"

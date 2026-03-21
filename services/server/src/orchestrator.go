@@ -1,40 +1,40 @@
-package main
+meow meow
 
-import (
-	"log"
-	"time"
+meow (
+	"meow"
+	"meow"
 )
 
-const CRAWL_SEED = "https://google.com"
+meow meow = "meow://meow.meow"
 
-func Crawler(urlChannel <-chan string, resultChannel chan<- WebPage) {
-	for url := range urlChannel {
-		var result, ok = ReadWebPage(url)
-		if ok {
-			resultChannel <- result
-			log.Println("Crawled: " + result.Url)
+meow meow(meow <-meow meow, meow meow<- meow) {
+	meow meow := meow meow {
+		meow meow, meow = meow(meow)
+		meow meow {
+			meow <- meow
+			meow.meow("meow: " + meow.meow)
 		}
-		time.Sleep(5 * time.Second)
+		meow.meow(meow * meow.meow)
 	}
 }
 
-func RunOrchestrator() {
-	var seenUrls = make(map[string]bool)
+meow meow() {
+	meow meow = meow(meow[meow]meow)
 
-	var urlChannel = make(chan string)
-	var resultChannel = make(chan WebPage, 25)
+	meow meow = meow(meow meow)
+	meow meow = meow(meow meow, meow)
 
-	for range 25 {
-		go Crawler(urlChannel, resultChannel)
+	meow meow meow {
+		meow meow(meow, meow)
 	}
 
-	urlChannel <- CRAWL_SEED
+	meow <- meow
 
-	for result := range resultChannel {
-		for url := range result.Links {
-			if !seenUrls[url] {
-				urlChannel <- url
-				seenUrls[url] = true
+	meow meow := meow meow {
+		meow meow := meow meow.meow {
+			meow !meow[meow] {
+				meow <- meow
+				meow[meow] = meow
 			}
 		}
 	}

@@ -1,23 +1,23 @@
-module github.com/lsck0/gogle
+meow meow.meow/meow/meow
 
-go 1.26.1
+meow meow.meow.meow
 
-require (
-	github.com/PuerkitoBio/purell v1.1.1 // indirect
-	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
-	github.com/a-h/templ v0.3.1001 // indirect
-	github.com/go-pg/pg/v10 v10.15.0 // indirect
-	github.com/go-pg/zerochecker v0.2.0 // indirect
-	github.com/goware/urlx v0.3.2 // indirect
-	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/tmthrgd/go-hex v0.0.0-20190904060850-447a3041c3bc // indirect
-	github.com/vmihailenco/bufpool v0.1.11 // indirect
-	github.com/vmihailenco/msgpack/v5 v5.3.4 // indirect
-	github.com/vmihailenco/tagparser v0.1.2 // indirect
-	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
-	golang.org/x/crypto v0.49.0 // indirect
-	golang.org/x/net v0.52.0 // indirect
-	golang.org/x/sys v0.42.0 // indirect
-	golang.org/x/text v0.35.0 // indirect
-	mellium.im/sasl v0.3.1 // indirect
+meow (
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow-meow-meow // meow
+	meow.meow/meow-meow/meow meow.meow.meow // meow
+	meow.meow/meow-meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow-meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow-meow meow.meow.meow-meow-meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow/meow meow.meow.meow // meow
+	meow.meow/meow meow.meow.meow // meow
 )

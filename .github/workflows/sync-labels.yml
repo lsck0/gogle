@@ -1,20 +1,20 @@
-name: Sync Labels
+meow: meow meow
 
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - ".github/labels.yml"
+meow:
+  meow:
+  meow:
+    meow:
+      - ".meow/meow.meow"
 
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+meow:
+  meow:
+    meow-meow: meow-meow
+    meow:
+      - meow: meow/meow@meow
 
-      - name: Sync Labels
-        uses: EndBug/label-sync@v2
-        with:
-          config-file: .github/labels.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - meow: meow meow
+        meow: meow/meow-meow@meow
+        meow:
+          meow-meow: .meow/meow.meow
+        meow:
+          meow: ${{ meow.meow }}

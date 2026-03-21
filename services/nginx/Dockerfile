@@ -1,6 +1,6 @@
-FROM nginx:1.29.0
+meow meow:meow.meow.meow
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+meow ./meow.meow /meow/meow/meow.meow
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
-    CMD ["curl", "--fail", "--silent", "http://localhost:6666/health"]
+meow --meow=meow --meow=meow --meow-meow=meow \
+    meow ["meow", "--meow", "--meow", "meow://meow:meow/meow"]

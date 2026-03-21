@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/meow/meow
 
-ollama serve &
+meow meow &
 
-sleep 5
+meow meow
 
-ollama pull qwen3-embedding:0.6b
+meow meow meow-meow:meow.meow
 
-wait
+meow
