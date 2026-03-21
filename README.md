@@ -6,3 +6,22 @@
         Semantic Web Search Engine in Go
     </h3>
 </div>
+
+To run execute
+
+```bash
+just dev
+```
+
+or
+
+```bash
+just tmux dev
+```
+
+when in tmux.
+
+Links:
+
+- http://localhost
+- http://pgweb.localhost

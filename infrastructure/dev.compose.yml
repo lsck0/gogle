@@ -1,0 +1,76 @@
+services:
+  nginx:
+    container_name: gogle-dev-nginx
+    build:
+      context: ../services/nginx
+      dockerfile: Dockerfile
+    env_file:
+      - ./dev.env
+    ports:
+      - 80:80
+    depends_on:
+      - server
+      - pgweb
+    develop:
+      watch:
+        - action: rebuild
+          path: ../services/nginx/Dockerfile
+        - action: rebuild
+          path: ../services/nginx/nginx.conf
+
+  server:
+    container_name: gogle-dev-server
+    build:
+      context: ../services/server/
+      dockerfile: Dockerfile
+    env_file:
+      - ./dev.env
+    depends_on:
+      ollama:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ../services/server/
+
+  ollama:
+    container_name: gogle-dev-ollama
+    build:
+      context: ../services/ollama
+      dockerfile: Dockerfile
+    volumes:
+      - dev_ollama_data:/root/.ollama
+    tty: true
+    develop:
+      watch:
+        - action: rebuild
+          path: ../services/ollama/Dockerfile
+        - action: rebuild
+          path: ../services/ollama/start.sh
+
+  postgres:
+    container_name: gogle-dev-postgres
+    build:
+      context: ../services/postgres
+      dockerfile: Dockerfile
+    volumes:
+      - dev_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./dev.env
+
+  pgweb:
+    container_name: gogle-dev-pgweb
+    build:
+      context: ../services/pgweb
+      dockerfile: Dockerfile
+    env_file:
+      - ./dev.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  dev_ollama_data: {}
+  dev_postgres_data: {}
