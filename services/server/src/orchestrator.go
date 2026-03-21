@@ -2,10 +2,14 @@ package main
 
 import (
 	"log"
+	"maps"
+	"slices"
 	"time"
+
+	"github.com/lsck0/gogle/src/collection"
 )
 
-const CRAWL_SEED = "https://google.com"
+const CRAWL_SEED = "https://reddit.com"
 
 func Crawler(urlChannel <-chan string, resultChannel chan<- WebPage) {
 	for url := range urlChannel {
@@ -19,23 +23,18 @@ func Crawler(urlChannel <-chan string, resultChannel chan<- WebPage) {
 }
 
 func RunOrchestrator() {
-	var seenUrls = make(map[string]bool)
+	const MAX_PARALLEL_CRAWLERS = 2
 
-	var urlChannel = make(chan string)
-	var resultChannel = make(chan WebPage, 25)
+	urlQueue := collection.NewURLQueue()
+	resultChannel := make(chan WebPage, MAX_PARALLEL_CRAWLERS)
 
-	for range 25 {
-		go Crawler(urlChannel, resultChannel)
+	for range MAX_PARALLEL_CRAWLERS {
+		go Crawler(urlQueue.GetStream(), resultChannel)
 	}
 
-	urlChannel <- CRAWL_SEED
+	urlQueue.PushUrls(CRAWL_SEED)
 
 	for result := range resultChannel {
-		for url := range result.Links {
-			if !seenUrls[url] {
-				urlChannel <- url
-				seenUrls[url] = true
-			}
-		}
+		urlQueue.PushUrls(slices.Collect(maps.Keys(result.Links))...)
 	}
 }
