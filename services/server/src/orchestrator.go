@@ -5,36 +5,38 @@ import (
 	"time"
 )
 
-const CRAWL_SEED = "https://google.com"
+const crawlSeedURL = "https://google.com"
 
-func Crawler(urlChannel <-chan string, resultChannel chan<- WebPage) {
-	for url := range urlChannel {
-		var result, ok = ReadWebPage(url)
-		if ok {
-			resultChannel <- result
-			log.Println("Crawled: " + result.Url)
+func crawler(urlCh <-chan string, resCh chan<- WebPage) {
+	for url := range urlCh {
+		res, ok := ReadWebPage(url)
+		if !ok {
+			log.Printf("Failed crawling %q", url)
+			continue
 		}
+
+		log.Printf("Succeeded crawling %q", url)
+		go func() { resCh <- res }() // Send res from separate goroutine to prevent deadlock
+
 		time.Sleep(5 * time.Second)
 	}
 }
 
 func RunOrchestrator() {
-	var seenUrls = make(map[string]bool)
-
-	var urlChannel = make(chan string)
-	var resultChannel = make(chan WebPage, 25)
+	var urlCh = make(chan string)
+	var resCh = make(chan WebPage)
 
 	for range 25 {
-		go Crawler(urlChannel, resultChannel)
+		go crawler(urlCh, resCh)
 	}
+	urlCh <- crawlSeedURL
 
-	urlChannel <- CRAWL_SEED
-
-	for result := range resultChannel {
-		for url := range result.Links {
-			if !seenUrls[url] {
-				urlChannel <- url
-				seenUrls[url] = true
+	seen := map[string]bool{crawlSeedURL: true}
+	for res := range resCh {
+		for url := range res.Links {
+			if !seen[url] {
+				seen[url] = true
+				urlCh <- url
 			}
 		}
 	}
