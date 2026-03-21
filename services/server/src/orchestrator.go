@@ -9,9 +9,9 @@ const crawlSeedURL = "https://google.com"
 
 func crawler(urlCh <-chan string, resCh chan<- WebPage) {
 	for url := range urlCh {
-		res, ok := ReadWebPage(url)
-		if !ok {
-			log.Printf("Failed crawling %q", url)
+		res, err := FetchWebPage(url)
+		if err != nil {
+			log.Println(err)
 			continue
 		}
 

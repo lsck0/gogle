@@ -1,16 +1,18 @@
 package main
 
 import (
-	"github.com/goware/urlx"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/goware/urlx"
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 )
 
 type WebPage struct {
-	Url           string
+	URL           string
 	Title         string
 	Description   string
 	Content       string
@@ -18,21 +20,28 @@ type WebPage struct {
 	RetrievalTime time.Time
 }
 
-func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
-	response, err := http.Get(targetUrl)
+func FetchWebPage(targetURL string) (res WebPage, err error) {
+	resp, err := http.Get(targetURL)
 	if err != nil {
+		err = fmt.Errorf("FetchWebPage: %w", err)
 		return
 	}
-	defer response.Body.Close()
+	defer resp.Body.Close()
 
-	doc, err := html.Parse(response.Body)
-	if err != nil {
+	if resp.StatusCode != http.StatusOK {
+		err = fmt.Errorf("FetchWebPage: getting %q: %s", targetURL, resp.Status)
 		return
 	}
 
-	result.Url = response.Request.URL.String()
-	result.Links = make(map[string]bool)
-	result.RetrievalTime = time.Now()
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		err = fmt.Errorf("FetchWebPage: parsing %q as HTML: %w", targetURL, err)
+		return
+	}
+
+	res.URL = resp.Request.URL.String()
+	res.Links = make(map[string]bool)
+	res.RetrievalTime = time.Now()
 
 	for n := range doc.Descendants() {
 		// skip script and style
@@ -45,7 +54,7 @@ func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 			if n.FirstChild != nil && n.FirstChild.Type == html.TextNode {
 				var text = strings.TrimSpace(n.FirstChild.Data)
 				if text != "" {
-					result.Title = text
+					res.Title = text
 				}
 			}
 		}
@@ -72,9 +81,9 @@ func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 
 			switch target {
 			case "title":
-				result.Title = content
+				res.Title = content
 			case "description":
-				result.Description = content
+				res.Description = content
 			}
 		}
 
@@ -82,7 +91,7 @@ func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 		if n.Type == html.TextNode {
 			var text = strings.TrimSpace(n.Data)
 			if text != "" {
-				result.Content += text
+				res.Content += text
 			}
 		}
 
@@ -92,15 +101,15 @@ func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 				if a.Key == "href" {
 					var rawUrl = a.Val
 					if !strings.HasPrefix(a.Val, "http://") && !strings.HasPrefix(a.Val, "https://") {
-						rawUrl = result.Url + "/" + a.Val
+						rawUrl = res.URL + "/" + a.Val
 					}
 					var normalizedUrl, error = urlx.NormalizeString(rawUrl)
 					if error != nil {
 						continue
 					}
 
-					if !result.Links[normalizedUrl] {
-						result.Links[normalizedUrl] = true
+					if !res.Links[normalizedUrl] {
+						res.Links[normalizedUrl] = true
 					}
 
 					break
@@ -109,6 +118,5 @@ func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 		}
 	}
 
-	ok = true
 	return
 }
