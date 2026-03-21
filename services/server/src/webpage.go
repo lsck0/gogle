@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-type CrawlResult struct {
+type WebPage struct {
 	Url           string
 	Title         string
 	Description   string
@@ -18,7 +18,7 @@ type CrawlResult struct {
 	RetrievalTime time.Time
 }
 
-func Crawl(targetUrl string) (result CrawlResult, ok bool) {
+func ReadWebPage(targetUrl string) (result WebPage, ok bool) {
 	response, err := http.Get(targetUrl)
 	if err != nil {
 		return
