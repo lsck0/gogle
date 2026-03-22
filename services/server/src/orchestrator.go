@@ -2,7 +2,11 @@ package main
 
 import (
 	"log"
+	"maps"
+	"slices"
 	"time"
+
+	"github.com/lsck0/gogle/src/collection"
 )
 
 const crawlSeedURL = "https://google.com"
