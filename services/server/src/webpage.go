@@ -1,13 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
 
+	"github.com/aarondl/sqlboiler/v4/types"
 	"github.com/goware/urlx"
+	"github.com/lsck0/gogle/models"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 )
@@ -19,6 +22,22 @@ type WebPage struct {
 	Content       string
 	Links         map[string]bool
 	RetrievalTime time.Time
+}
+
+func (wp WebPage) toModel() (models.Webpage, error) {
+	linksJSON, err := json.Marshal(wp.Links)
+	if err != nil {
+		return models.Webpage{}, fmt.Errorf("toModel: marshaling links: %w", err)
+	}
+
+	return models.Webpage{
+		URL:           wp.URL,
+		Title:         wp.Title,
+		Description:   wp.Description,
+		Content:       wp.Content,
+		Links:         types.JSON(linksJSON),
+		RetrievalTime: wp.RetrievalTime,
+	}, nil
 }
 
 func FetchWebPage(targetURL string) (WebPage, error) {

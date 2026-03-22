@@ -1,12 +1,11 @@
 package main
 
 import (
+	"context"
 	"log"
-	"maps"
-	"slices"
 	"time"
 
-	"github.com/lsck0/gogle/src/collection"
+	"github.com/aarondl/sqlboiler/v4/boil"
 )
 
 const crawlSeedURL = "https://google.com"
@@ -27,10 +26,12 @@ func crawler(urlCh <-chan string, resCh chan<- WebPage) {
 }
 
 func RunOrchestrator() {
+	ctx := context.Background()
+
 	var urlCh = make(chan string)
 	var resCh = make(chan WebPage)
 
-	for range 25 {
+	for range 10 {
 		go crawler(urlCh, resCh)
 	}
 	urlCh <- crawlSeedURL
@@ -40,8 +41,11 @@ func RunOrchestrator() {
 		for url := range res.Links {
 			if !seen[url] {
 				seen[url] = true
-				urlCh <- url
+				go func() { urlCh <- url }()
 			}
 		}
+
+		obj, _ := res.toModel()
+		obj.InsertG(ctx, boil.Infer())
 	}
 }

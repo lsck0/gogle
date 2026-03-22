@@ -14,3 +14,12 @@ BEGIN
    END IF;
 END
 $do$;
+
+CREATE TABLE IF NOT EXISTS "webpage" (
+    url TEXT PRIMARY KEY,
+    title TEXT NOT NULL DEFAULT '',
+    description TEXT NOT NULL DEFAULT '',
+    content TEXT NOT NULL DEFAULT '',
+    links JSONB NOT NULL DEFAULT '{}',
+    retrieval_time TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

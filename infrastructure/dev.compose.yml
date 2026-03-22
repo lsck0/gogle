@@ -9,7 +9,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      - server
+      # - server
       - pgweb
     develop:
       watch:
@@ -18,22 +18,22 @@ services:
         - action: rebuild
           path: ../services/nginx/nginx.conf
 
-  server:
-    container_name: gogle-dev-server
-    build:
-      context: ../services/server/
-      dockerfile: Dockerfile
-    env_file:
-      - ./dev.env
-    depends_on:
-      ollama:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-    develop:
-      watch:
-        - action: rebuild
-          path: ../services/server/
+  # server:
+  #   container_name: gogle-dev-server
+  #   build:
+  #     context: ../services/server/
+  #     dockerfile: Dockerfile
+  #   env_file:
+  #     - ./dev.env
+  #   depends_on:
+  #     ollama:
+  #       condition: service_healthy
+  #     postgres:
+  #       condition: service_healthy
+  #   develop:
+  #     watch:
+  #       - action: rebuild
+  #         path: ../services/server/
 
   ollama:
     container_name: gogle-dev-ollama
@@ -59,6 +59,8 @@ services:
       - dev_postgres_data:/var/lib/postgresql/data
     env_file:
       - ./dev.env
+    ports:
+      - 5432:5432
 
   pgweb:
     container_name: gogle-dev-pgweb
