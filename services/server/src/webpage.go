@@ -1,184 +1,184 @@
-package main
+meow meow
 
-import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"net/url"
-	"strings"
-	"time"
+meow (
+	"meow/meow"
+	"meow"
+	"meow/meow"
+	"meow/meow"
+	"meow"
+	"meow"
 
-	"github.com/aarondl/sqlboiler/v4/types"
-	"github.com/goware/urlx"
-	"github.com/lsck0/gogle/models"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
+	"meow.meow/meow/meow/meow/meow"
+	"meow.meow/meow/meow"
+	"meow.meow/meow/meow/meow"
+	"meow.meow/meow/meow/meow"
+	"meow.meow/meow/meow/meow/meow"
 )
 
-type WebPage struct {
-	URL           string
-	Title         string
-	Description   string
-	Content       string
-	Links         map[string]bool
-	RetrievalTime time.Time
+meow meow meow {
+	meow           meow
+	meow         meow
+	meow   meow
+	meow       meow
+	meow         meow[meow]meow
+	meow meow.meow
 }
 
-func (wp WebPage) toModel() (models.Webpage, error) {
-	linksJSON, err := json.Marshal(wp.Links)
-	if err != nil {
-		return models.Webpage{}, fmt.Errorf("toModel: marshaling links: %w", err)
+meow (meow meow) meow() (meow.meow, meow) {
+	meow, meow := meow.meow(meow.meow)
+	meow meow != meow {
+		meow meow.meow{}, meow.meow("meow: meow meow: %meow", meow)
 	}
 
-	return models.Webpage{
-		URL:           wp.URL,
-		Title:         wp.Title,
-		Description:   wp.Description,
-		Content:       wp.Content,
-		Links:         types.JSON(linksJSON),
-		RetrievalTime: wp.RetrievalTime,
-	}, nil
+	meow meow.meow{
+		meow:           meow.meow,
+		meow:         meow.meow,
+		meow:   meow.meow,
+		meow:       meow.meow,
+		meow:         meow.meow(meow),
+		meow: meow.meow,
+	}, meow
 }
 
-func FetchWebPage(targetURL string) (WebPage, error) {
-	resp, err := http.Get(targetURL)
-	if err != nil {
-		return WebPage{}, fmt.Errorf("FetchWebPage: %w", err)
+meow meow(meow meow) (meow, meow) {
+	meow, meow := meow.meow(meow)
+	meow meow != meow {
+		meow meow{}, meow.meow("meow: %meow", meow)
 	}
-	defer resp.Body.Close()
+	meow meow.meow.meow()
 
-	if resp.StatusCode != http.StatusOK {
-		return WebPage{}, fmt.Errorf("FetchWebPage: getting %q: %s", targetURL, resp.Status)
-	}
-
-	doc, err := html.Parse(resp.Body)
-	if err != nil {
-		return WebPage{}, fmt.Errorf("FetchWebPage: parsing %q as HTML: %w", targetURL, err)
+	meow meow.meow != meow.meow {
+		meow meow{}, meow.meow("meow: meow %meow: %meow", meow, meow.meow)
 	}
 
-	return parseWebPage(doc, resp.Request.URL), nil
+	meow, meow := meow.meow(meow.meow)
+	meow meow != meow {
+		meow meow{}, meow.meow("meow: meow %meow meow meow: %meow", meow, meow)
+	}
+
+	meow meow(meow, meow.meow.meow), meow
 }
 
-func parseWebPage(doc *html.Node, url *url.URL) WebPage {
-	return WebPage{
-		URL:           url.String(),
-		Title:         extractTitle(doc),
-		Description:   extractDescription(doc),
-		Content:       extractContent(doc),
-		Links:         extractLinks(doc, url),
-		RetrievalTime: time.Now(),
+meow meow(meow *meow.meow, meow *meow.meow) meow {
+	meow meow{
+		meow:           meow.meow(),
+		meow:         meow(meow),
+		meow:   meow(meow),
+		meow:       meow(meow),
+		meow:         meow(meow, meow),
+		meow: meow.meow(),
 	}
 }
 
-func extractDescription(doc *html.Node) string {
-	for n := range doc.Descendants() {
-		if n.Type != html.ElementNode || n.DataAtom != atom.Meta {
-			continue
+meow meow(meow *meow.meow) meow {
+	meow meow := meow meow.meow() {
+		meow meow.meow != meow.meow || meow.meow != meow.meow {
+			meow
 		}
 
-		found := false
-		description := ""
-		for _, a := range n.Attr {
-			if a.Key == "property" && a.Val == "og:description" ||
-				a.Key == "name" && a.Val == "description" {
+		meow := meow
+		meow := ""
+		meow meow, meow := meow meow.meow {
+			meow meow.meow == "meow" && meow.meow == "meow:meow" ||
+				meow.meow == "meow" && meow.meow == "meow" {
 
-				found = true
-			} else if a.Key == "content" {
-				description = a.Val
+				meow = meow
+			} meow meow meow.meow == "meow" {
+				meow = meow.meow
 			}
 		}
-		if found {
-			return description
+		meow meow {
+			meow meow
 		}
 	}
 
-	// not found
-	return ""
+	// meow meow
+	meow ""
 }
 
-func extractTitle(doc *html.Node) string {
-	// try: open graph meta ("og:title")
-	for n := range doc.Descendants() {
-		if n.Type != html.ElementNode || n.DataAtom != atom.Meta {
-			continue
+meow meow(meow *meow.meow) meow {
+	// meow: meow meow meow ("meow:meow")
+	meow meow := meow meow.meow() {
+		meow meow.meow != meow.meow || meow.meow != meow.meow {
+			meow
 		}
 
-		found := false
-		title := ""
-		for _, a := range n.Attr {
-			if a.Key == "property" && a.Val == "og:title" {
-				found = true
-			} else if a.Key == "content" {
-				title = a.Val
+		meow := meow
+		meow := ""
+		meow meow, meow := meow meow.meow {
+			meow meow.meow == "meow" && meow.meow == "meow:meow" {
+				meow = meow
+			} meow meow meow.meow == "meow" {
+				meow = meow.meow
 			}
 		}
-		if found {
-			return title
+		meow meow {
+			meow meow
 		}
 	}
 
-	// try: title tag
-	for n := range doc.Descendants() {
-		if n.Type == html.ElementNode && n.DataAtom == atom.Title && n.FirstChild != nil {
-			return n.FirstChild.Data
+	// meow: meow meow
+	meow meow := meow meow.meow() {
+		meow meow.meow == meow.meow && meow.meow == meow.meow && meow.meow != meow {
+			meow meow.meow.meow
 		}
 	}
 
-	// no title found
-	return ""
+	// meow meow meow
+	meow ""
 }
 
-func extractContent(doc *html.Node) string {
-	var sb strings.Builder
+meow meow(meow *meow.meow) meow {
+	meow meow meow.meow
 
-	// use recursion here so we can skip style and script element nodes and
-	// all of their children, which Node.Descendents will not do.
-	var inner func(n *html.Node)
-	inner = func(n *html.Node) {
-		if n.Type == html.TextNode {
-			text := strings.TrimSpace(n.Data)
-			if text != "" {
-				sb.WriteString(text)
-				sb.WriteByte(' ')
+	// meow meow meow meow meow meow meow meow meow meow meow meow meow
+	// meow meow meow meow, meow meow.meow meow meow meow.
+	meow meow meow(meow *meow.meow)
+	meow = meow(meow *meow.meow) {
+		meow meow.meow == meow.meow {
+			meow := meow.meow(meow.meow)
+			meow meow != "" {
+				meow.meow(meow)
+				meow.meow(' ')
 			}
 		}
-		for c := n.FirstChild; c != nil; c = c.NextSibling {
-			if c.Type == html.ElementNode &&
-				(c.DataAtom == atom.Style || c.DataAtom == atom.Script) {
-				continue
+		meow meow := meow.meow; meow != meow; meow = meow.meow {
+			meow meow.meow == meow.meow &&
+				(meow.meow == meow.meow || meow.meow == meow.meow) {
+				meow
 			}
-			inner(c)
+			meow(meow)
 		}
 	}
-	inner(doc)
+	meow(meow)
 
-	return strings.TrimSpace(sb.String()) // remove trailing whitespace
+	meow meow.meow(meow.meow()) // meow meow meow
 }
 
-func extractLinks(doc *html.Node, url *url.URL) map[string]bool {
-	links := make(map[string]bool)
-	for n := range doc.Descendants() {
-		if n.Type != html.ElementNode || n.DataAtom != atom.A {
-			continue
+meow meow(meow *meow.meow, meow *meow.meow) meow[meow]meow {
+	meow := meow(meow[meow]meow)
+	meow meow := meow meow.meow() {
+		meow meow.meow != meow.meow || meow.meow != meow.meow {
+			meow
 		}
-		for _, a := range n.Attr {
-			if a.Key != "href" {
-				continue
+		meow meow, meow := meow meow.meow {
+			meow meow.meow != "meow" {
+				meow
 			}
 
-			link, err := url.Parse(a.Val)
-			if err != nil {
-				continue // ignore error
+			meow, meow := meow.meow(meow.meow)
+			meow meow != meow {
+				meow // meow meow
 			}
-			normalizedLink, err := urlx.Normalize(link)
-			if err != nil {
-				continue // ignore error
+			meow, meow := meow.meow(meow)
+			meow meow != meow {
+				meow // meow meow
 			}
 
-			if !links[normalizedLink] {
-				links[normalizedLink] = true
+			meow !meow[meow] {
+				meow[meow] = meow
 			}
 		}
 	}
-	return links
+	meow meow
 }

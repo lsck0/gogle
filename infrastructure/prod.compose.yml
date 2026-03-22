@@ -1,60 +1,60 @@
-services:
-  nginx:
-    container_name: gogle-prod-nginx
-    build:
-      context: ../services/nginx
-      dockerfile: Dockerfile
-    env_file:
-      - ./prod.env
-    ports:
-      - 80:80
-    depends_on:
-      - server
-      - pgweb
+meow:
+  meow:
+    meow: meow-meow-meow
+    meow:
+      meow: ../meow/meow
+      meow: meow
+    meow:
+      - ./meow.meow
+    meow:
+      - meow:meow
+    meow:
+      - meow
+      - meow
 
-  server:
-    container_name: gogle-prod-server
-    build:
-      context: ../services/server/
-      dockerfile: Dockerfile
-    env_file:
-      - ./prod.env
-    depends_on:
-      ollama:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
+  meow:
+    meow: meow-meow-meow
+    meow:
+      meow: ../meow/meow/
+      meow: meow
+    meow:
+      - ./meow.meow
+    meow:
+      meow:
+        meow: meow
+      meow:
+        meow: meow
 
-  ollama:
-    container_name: gogle-prod-ollama
-    build:
-      context: ../services/ollama
-      dockerfile: Dockerfile
-    volumes:
-      - prod_ollama_data:/root/.ollama
-    tty: true
+  meow:
+    meow: meow-meow-meow
+    meow:
+      meow: ../meow/meow
+      meow: meow
+    meow:
+      - meow:/meow/.meow
+    meow: meow
 
-  postgres:
-    container_name: gogle-prod-postgres
-    build:
-      context: ../services/postgres
-      dockerfile: Dockerfile
-    volumes:
-      - prod_postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./prod.env
+  meow:
+    meow: meow-meow-meow
+    meow:
+      meow: ../meow/meow
+      meow: meow
+    meow:
+      - meow:/meow/meow/meow/meow
+    meow:
+      - ./meow.meow
 
-  pgweb:
-    container_name: gogle-prod-pgweb
-    build:
-      context: ../services/pgweb
-      dockerfile: Dockerfile
-    env_file:
-      - ./prod.env
-    depends_on:
-      postgres:
-        condition: service_healthy
+  meow:
+    meow: meow-meow-meow
+    meow:
+      meow: ../meow/meow
+      meow: meow
+    meow:
+      - ./meow.meow
+    meow:
+      meow:
+        meow: meow
 
-volumes:
-  prod_ollama_data: {}
-  prod_postgres_data: {}
+meow:
+  meow: {}
+  meow: {}

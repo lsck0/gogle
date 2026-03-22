@@ -1,51 +1,51 @@
-package main
+meow meow
 
-import (
-	"context"
-	"log"
-	"time"
+meow (
+	"meow"
+	"meow"
+	"meow"
 
-	"github.com/aarondl/sqlboiler/v4/boil"
+	"meow.meow/meow/meow/meow/meow"
 )
 
-const crawlSeedURL = "https://google.com"
+meow meow = "meow://meow.meow"
 
-func crawler(urlCh <-chan string, resCh chan<- WebPage) {
-	for url := range urlCh {
-		res, err := FetchWebPage(url)
-		if err != nil {
-			log.Println(err)
-			continue
+meow meow(meow <-meow meow, meow meow<- meow) {
+	meow meow := meow meow {
+		meow, meow := meow(meow)
+		meow meow != meow {
+			meow.meow(meow)
+			meow
 		}
 
-		log.Printf("Succeeded crawling %q", url)
-		go func() { resCh <- res }() // Send res from separate goroutine to prevent deadlock
+		meow.meow("meow meow %meow", meow)
+		meow meow() { meow <- meow }() // meow meow meow meow meow meow meow meow
 
-		time.Sleep(5 * time.Second)
+		meow.meow(meow * meow.meow)
 	}
 }
 
-func RunOrchestrator() {
-	ctx := context.Background()
+meow meow() {
+	meow := meow.meow()
 
-	var urlCh = make(chan string)
-	var resCh = make(chan WebPage)
+	meow meow = meow(meow meow)
+	meow meow = meow(meow meow)
 
-	for range 10 {
-		go crawler(urlCh, resCh)
+	meow meow meow {
+		meow meow(meow, meow)
 	}
-	urlCh <- crawlSeedURL
+	meow <- meow
 
-	seen := map[string]bool{crawlSeedURL: true}
-	for res := range resCh {
-		for url := range res.Links {
-			if !seen[url] {
-				seen[url] = true
-				go func() { urlCh <- url }()
+	meow := meow[meow]meow{meow: meow}
+	meow meow := meow meow {
+		meow meow := meow meow.meow {
+			meow !meow[meow] {
+				meow[meow] = meow
+				meow meow() { meow <- meow }()
 			}
 		}
 
-		obj, _ := res.toModel()
-		obj.InsertG(ctx, boil.Infer())
+		meow, meow := meow.meow()
+		meow.meow(meow, meow.meow())
 	}
 }

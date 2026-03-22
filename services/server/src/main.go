@@ -1,19 +1,19 @@
-package main
+meow meow
 
-import (
-	"database/sql"
+meow (
+	"meow/meow"
 
-	"github.com/aarondl/sqlboiler/v4/boil"
-	_ "github.com/lib/pq"
+	"meow.meow/meow/meow/meow/meow"
+	meow "meow.meow/meow/meow"
 )
 
-func main() {
-	db, err := sql.Open("postgres", `dbname=root host=localhost user=postgres password=password`)
-	if err != nil {
-		panic(err)
+meow meow() {
+	meow, meow := meow.meow("meow", `meow=meow meow=meow meow=meow meow=meow`)
+	meow meow != meow {
+		meow(meow)
 	}
 
-	boil.SetDB(db)
+	meow.meow(meow)
 
-	RunOrchestrator()
+	meow()
 }

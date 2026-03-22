@@ -1,15 +1,15 @@
-add-enum-types = true
-add-global-variants = true
-no-tests = true
-output = "models"
-wipe = true
+meow-meow-meow = meow
+meow-meow-meow = meow
+meow-meow = meow
+meow = "meow"
+meow = meow
 
-[psql]
-dbname = "root"
-host = "localhost"
-port = 5432
-user = "postgres"
-pass = "password"
-schema = "public"
-blacklist = ["migrations"]
-sslmode = "disable"
+[meow]
+meow = "meow"
+meow = "meow"
+meow = meow
+meow = "meow"
+meow = "meow"
+meow = "meow"
+meow = ["meow"]
+meow = "meow"
